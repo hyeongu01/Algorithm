@@ -20,7 +20,7 @@
 */
 
 #include <iostream>
-#include <algorithm>
+#include <algorithm>    // std::sort()
 #include <random>
 
 using namespace std;
