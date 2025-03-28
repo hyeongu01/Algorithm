@@ -1,6 +1,6 @@
 #include <iostream>
 #include <stdexcept>
-#include <string>
+#include <sstream>
 
 template <typename T>
 class Stack {
@@ -61,11 +61,13 @@ public:
     }
 
     void display() {
-        std::string str_data = "|| Stack: (size: ";
-        str_data += std::to_string(size()) + " ) || ";
-        for (int i = 0; i < top+1; i ++) {
-            str_data += std::to_string(data[i]) + " | ";
+        std::ostringstream out;
+        out << "|| Stack: (size: " << size() << ") || ";
+        for (int i = 0; i < top+1; i++) {
+            out << data[i] << " | ";
         }
+        
+        std::string str_data = out.str();
         str_data = str_data.substr(0, str_data.length()-3);
         str_data += " ||";
 
@@ -82,9 +84,9 @@ public:
 };
 
 int main() {
-    Stack<int> s;
-    for (int i = 0; i < 20; i++) {
-        s.push(i);
+    Stack<std::string> s;
+    for (int i = 0; i < 15; i++) {
+        s.push("s" + std::to_string(i));
         if (s.size() % 5 == 0)
             s.display();
     }
