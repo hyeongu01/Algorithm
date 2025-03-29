@@ -60,7 +60,7 @@ public:
         }
     }
 
-    void display() {
+    void display() const {
         std::ostringstream out;
         out << "|| Stack: (size: " << size() << ") || ";
         for (int i = 0; i < top+1; i++) {
