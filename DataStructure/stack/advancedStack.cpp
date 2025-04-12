@@ -90,6 +90,12 @@ int main() {
         if (s.size() % 5 == 0)
             s.display();
     }
+
+    for (int i = 0; i < 16; i++) {
+        s.pop();
+        if (s.size() % 5 == 0)
+            s.display();
+    }
     
     return 0;
 }

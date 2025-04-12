@@ -17,7 +17,6 @@ public:
         Node<T>* p = head;
         while (p != nullptr) {
             Node<T>* next = p->getAddr();
-            std::cout << p->getData() << " is deleted\n";
             delete p;
             p = next;
         }
@@ -41,10 +40,17 @@ public:
 
     void remove() {
         Node<T>* tail = head;
+        if (tail == nullptr) {
+            std::cout << "there's no Node\n";
+            return;
+        } else if (tail->getAddr() == nullptr) {
+            delete head;
+            head = nullptr;
+            return;
+        }
         while (tail->getAddr()->getAddr() != nullptr) {
             tail = tail->getAddr();
         }
-        std::cout << tail->getAddr()->getData() << " is removed\n";
         delete tail->getAddr();
         tail->setAddr(nullptr);
     }
@@ -76,7 +82,10 @@ public:
         out << size << ") | " << outData;
 
         std::string out_str = out.str();
-        out_str = out_str.substr(0, out_str.length()-4) + " ||";
+        if (size == 0) {
+            out_str = out_str.substr(0, out_str.length()-3) + " ||";
+        } else 
+            out_str = out_str.substr(0, out_str.length()-4) + " ||";
 
         for (int i = 0; i < out_str.length(); i++) {
             std::cout << "=";
