@@ -1,5 +1,6 @@
 #include "Node.h"
 #include <iostream>
+#include <sstream>
 
 #ifndef LINKEDLIST_H
 #define LINKEDLIST_H
@@ -49,11 +50,45 @@ public:
     }
 
     bool search(T target) const {
-
+        Node<T>* p = head;
+        while (p != nullptr) {
+            if (p->getData() == target) {
+                return true;
+            }
+            p = p->getAddr();
+        }
+        return false;
     }
 
     void display() {
+        std::ostringstream out;
         
+        out << "|| Linked List: (size: ";
+
+        std::string outData;
+        int size = 0;
+        Node<T>* p = head;
+        while (p != nullptr) {
+            size ++;
+            outData += std::to_string(p->getData()) + " -> ";
+            p = p->getAddr();
+        }
+        out << size << ") | " << outData;
+
+        std::string out_str = out.str();
+        out_str = out_str.substr(0, out_str.length()-4) + " ||";
+
+        for (int i = 0; i < out_str.length(); i++) {
+            std::cout << "=";
+        }
+        std::cout << std::endl;
+
+        std::cout << out_str << std::endl;
+        
+        for (int i = 0; i < out_str.length(); i++) {
+            std::cout << "=";
+        }
+        std::cout << std::endl;
     }
 };
 
